@@ -9,7 +9,7 @@ string input;
 long sum;
 int len;
 int braces[3];
-bool bracesopen[3];
+int bracesopen[3];
 
 bool validate(char ch)
 {
@@ -41,21 +41,21 @@ bool validate(char ch)
 	{
 		if(bracesopen[0] || bracesopen[1] || bracesopen[2]==0)
 			return true;
-		bracesopen[2] = false;
+		bracesopen[2]--;
     }
 
     else if(ch==']')
     {
 		if(bracesopen[0] || bracesopen[1]==0)
 			return true;
-		bracesopen[1] = false;
+		bracesopen[1]--;
     }
 
     else if(ch==')')
     {
 		if(bracesopen[0]==0)
 			return true;
-		bracesopen[0] = false;
+		bracesopen[0]--;
     }
 
 	return false;
@@ -89,6 +89,16 @@ int main()
     {
         cout << "NO" << endl;
         return 0;
+    }
+
+    char outermost_brace = input[0];
+    for(int i=1; i<len; i++)
+    {
+        if(input[i]==outermost_brace)
+        {
+            cout << "NO" << endl;
+            return 0;
+        }
     }
 
     int Result=0;
