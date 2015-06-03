@@ -101,6 +101,18 @@ int main()
         }
     }
 
+    char endbrace;
+    if(outermost_brace!='(')
+        endbrace = outermost_brace + 2;
+    else
+        endbrace = outermost_brace++;
+
+    if(input[len-1] != endbrace)
+    {
+        cout << "NO" << endl;
+        return 0;
+    }
+
     int Result=0;
 	string CurNumb="";
 	for(int i=0;i<len;i++)
